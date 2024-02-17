@@ -60,7 +60,7 @@ def tamano_datos(conversion, valor):
     pass
 
 # Configuración de la aplicación
-st.title("Conversor Universal")
+st.title("Conversor Universal by Albeiro B.")
 
 categoria = st.selectbox("Selecciona una categoría:", 
                          ("Temperatura", "Longitud", "Peso/Masa", "Volumen", "Tiempo", "Velocidad", "Área", "Energía", "Presión", "Tamaño de Datos"))
