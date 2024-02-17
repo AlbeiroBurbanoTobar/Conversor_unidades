@@ -1,17 +1,7 @@
 import streamlit as st
 
-def convertir_temperatura(conversion: str, valor: float) -> float:
-    """
-    Convierte una temperatura de una unidad a otra.
-
-    Args:
-        conversion: Tipo de conversión ("Celsius a Fahrenheit", etc.).
-        valor: Valor a convertir.
-
-    Returns:
-        Valor convertido a la unidad objetivo.
-    """
-
+# Funciones de conversión
+def temperatura(conversion, valor):
     if conversion == "Celsius a Fahrenheit":
         return (valor * 9/5) + 32
     elif conversion == "Fahrenheit a Celsius":
@@ -20,22 +10,8 @@ def convertir_temperatura(conversion: str, valor: float) -> float:
         return valor + 273.15
     elif conversion == "Kelvin a Celsius":
         return valor - 273.15
-    else:
-        raise ValueError(f"Conversión de temperatura no válida: {conversion}")
 
-
-def convertir_longitud(conversion: str, valor: float) -> float:
-    """
-    Convierte una longitud de una unidad a otra.
-
-    Args:
-        conversion: Tipo de conversión ("Pies a Metros", etc.).
-        valor: Valor a convertir.
-
-    Returns:
-        Valor convertido a la unidad objetivo.
-    """
-
+def longitud(conversion, valor):
     if conversion == "Pies a Metros":
         return valor * 0.3048
     elif conversion == "Metros a Pies":
@@ -44,36 +20,72 @@ def convertir_longitud(conversion: str, valor: float) -> float:
         return valor * 2.54
     elif conversion == "Centímetros a Pulgadas":
         return valor / 2.54
-    else:
-        raise ValueError(f"Conversión de longitud no válida: {conversion}")
 
+def peso_masa(conversion, valor):
+    if conversion == "Libras a Kilogramos":
+        return valor * 0.453592
+    elif conversion == "Kilogramos a Libras":
+        return valor / 0.453592
+    elif conversion == "Onzas a Gramos":
+        return valor * 28.3495
+    elif conversion == "Gramos a Onzas":
+        return valor / 28.3495
 
-# Funciones similares para las demás categorías (peso/masa, volumen, etc.)
+def volumen(conversion, valor):
+    # Definir conversiones de volumen
+    pass
+
+def tiempo(conversion, valor):
+    # Definir conversiones de tiempo
+    pass
+
+def velocidad(conversion, valor):
+    # Definir conversiones de velocidad
+    pass
+
+def area(conversion, valor):
+    # Definir conversiones de área
+    pass
+
+def energia(conversion, valor):
+    # Definir conversiones de energía
+    pass
+
+def presion(conversion, valor):
+    # Definir conversiones de presión
+    pass
+
+def tamano_datos(conversion, valor):
+    # Definir conversiones de tamaño de datos
+    pass
 
 # Configuración de la aplicación
 st.title("Conversor Universal by Albeiro B.")
 
-# Selección de la categoría
-categoria = st.selectbox("Selecciona una categoría:",
-                        ("Temperatura", "Longitud", "Peso/Masa", "Volumen", "Tiempo", "Velocidad", "Área", "Energía", "Presión", "Tamaño de Datos"))
+categoria = st.selectbox("Selecciona una categoría:", 
+                         ("Temperatura", "Longitud", "Peso/Masa", "Volumen", "Tiempo", "Velocidad", "Área", "Energía", "Presión", "Tamaño de Datos"))
 
-# Lógica para cada categoría
 if categoria == "Temperatura":
-    # Selección del tipo de conversión
-    conversion_temperatura = st.selectbox("Selecciona el tipo de conversión:",
-                                         ("Celsius a Fahrenheit", "Fahrenheit a Celsius", "Celsius a Kelvin", "Kelvin a Celsius"))
-    # Ingreso del valor a convertir
+    conversion_temperatura = st.selectbox("Selecciona el tipo de conversión:", 
+                              ("Celsius a Fahrenheit", "Fahrenheit a Celsius", "Celsius a Kelvin", "Kelvin a Celsius"))
     valor_temperatura = st.number_input("Ingresa el valor a convertir:")
-    # Cálculo del resultado
-    resultado_temperatura = convertir_temperatura(conversion_temperatura, valor_temperatura)
-    # Visualización del resultado
+    resultado_temperatura = temperatura(conversion_temperatura, valor_temperatura)
     st.write("Resultado:", resultado_temperatura)
 
 elif categoria == "Longitud":
-    # ... (Lógica similar para las demás categorías)
+    conversion_longitud = st.selectbox("Selecciona el tipo de conversión:", 
+                              ("Pies a Metros", "Metros a Pies", "Pulgadas a Centímetros", "Centímetros a Pulgadas"))
+    valor_longitud = st.number_input("Ingresa el valor a convertir:")
+    resultado_longitud = longitud(conversion_longitud, valor_longitud)
+    st.write("Resultado:", resultado_longitud)
 
-# ... (Lógica similar para las demás categorías)
+elif categoria == "Peso/Masa":
+    conversion_peso_masa = st.selectbox("Selecciona el tipo de conversión:", 
+                              ("Libras a Kilogramos", "Kilogramos a Libras", "Onzas a Gramos", "Gramos a Onzas"))
+    valor_peso_masa = st.number_input("Ingresa el valor a convertir:")
+    resultado_peso_masa = peso_masa(conversion_peso_masa, valor_peso_masa)
+    st.write("Resultado:", resultado_peso_masa)
 
+# Lógica similar para las otras categorías
 
-# Se pueden agregar comentarios y documentación a las demás funciones de conversión
 
